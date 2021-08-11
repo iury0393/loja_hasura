@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:loja_hasura/app/modules/home/home_store.dart';
-
-import 'widgets/card_produto/card_produto_widget.dart';
+import 'package:loja_hasura/app/shared/utils.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -17,14 +16,13 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: [
-          CardProdutoWidget(),
-        ],
-      ),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Observer(
+          builder: (_) {
+            return Utils.showLoading(context);
+          },
+        ));
   }
 }
