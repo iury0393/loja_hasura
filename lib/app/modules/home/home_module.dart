@@ -9,14 +9,19 @@ import 'package:loja_hasura/app/modules/home/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:loja_hasura/app/modules/home/home_page.dart';
 
+import 'repositories/delete_produto_repository.dart';
+
 class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        //Controllers
-        Bind((i) => CardProdutoController()),
+        Bind((i) => DeleteProdutoRepository(AppModule.to.get<HasuraConnect>())),
+        Bind((i) => CardProdutoController(i.get<DeleteProdutoRepository>())),
         Bind((i) => HomeController(i.get<HomeRepository>())),
 
-        Bind((i) => UpdateProdutoController(i.get<UpdateProdutoRepository>(), i.params["id"]) ,singleton: false ),
+        Bind(
+            (i) => UpdateProdutoController(
+                i.get<UpdateProdutoRepository>(), i.params["id"]),
+            singleton: false),
 
         //Repositories
         Bind((i) => UpdateProdutoRepository(AppModule.to.get<HasuraConnect>())),
@@ -26,7 +31,10 @@ class HomeModule extends ChildModule {
   @override
   List<Router> get routers => [
         Router('/', child: (_, args) => HomePage()),
-        Router('/UpdateProduto/:id', child: (_, args) => UpdateProdutoPage(id: args.params['id'],)),
+        Router('/UpdateProduto/:id',
+            child: (_, args) => UpdateProdutoPage(
+                  id: args.params['id'],
+                )),
       ];
 
   static Inject get to => Inject<HomeModule>.of();

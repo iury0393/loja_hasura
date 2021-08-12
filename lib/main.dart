@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:loja_hasura/app/app_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import 'app/app_module.dart';
-import 'app/app_widget.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
-  runApp(ModularApp(module: AppModule(), child: AppWidget()));
+  WidgetsFlutterBinding.ensureInitialized();
+  var shared = await SharedPreferences.getInstance();
+  runApp(OKToast(
+    child: ModularApp(module: AppModule(shared)),
+  ));
 }
