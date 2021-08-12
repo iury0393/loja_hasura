@@ -17,6 +17,8 @@ dependencies:
   mobx: ^2.0.3
   flutter_mobx: ^2.0.1
   google_fonts: ^2.1.0
+  hasura_connect: ^3.0.4
+  flutter_dotenv: ^5.0.1
 
 dev_dependencies:
   flutter_modular_test: ^1.0.1
