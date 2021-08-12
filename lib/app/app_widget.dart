@@ -6,7 +6,12 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Loja Hasura',
-      theme: ThemeData(primaryColor: Color(0xFF797EC2), accentColor: Color(0xFF72AFDD)),
-    ).modular();
+      theme: ThemeData(
+        primaryColor: Color(0xff797ec2),
+        accentColor: Color(0xff72afdd)
+      ),
+      initialRoute: '/',
+      onGenerateRoute: Modular.generateRoute,
+    );
   }
 }

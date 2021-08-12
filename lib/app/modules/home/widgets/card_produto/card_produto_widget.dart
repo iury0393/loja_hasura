@@ -8,12 +8,12 @@ class CardProdutoWidget extends StatelessWidget {
   final String idProduto;
 
   const CardProdutoWidget(
-      {Key? key,
-      required this.nomeProduto,
-      required this.categoriaProduto,
-      required this.tipoProduto,
-      required this.valor,
-      required this.idProduto})
+      {Key key,
+      @required this.nomeProduto,
+      @required this.categoriaProduto,
+      @required this.tipoProduto,
+      @required this.valor,
+      @required this.idProduto})
       : super(key: key);
 
   @override
@@ -64,16 +64,20 @@ class CardProdutoWidget extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(categoriaProduto, style: TextStyle(color: Colors.black, fontSize: 18)),
+                  Text(categoriaProduto,
+                      style: TextStyle(color: Colors.black, fontSize: 18)),
                   Row(
                     children: <Widget>[
                       Expanded(
                           child: Text(tipoProduto,
-                              style: TextStyle(color: Colors.black, fontSize: 18))),
+                              style: TextStyle(
+                                  color: Colors.black, fontSize: 18))),
                       Text(
                         "R\$ ${double.parse(valor).toStringAsFixed(2).replaceAll('.', ',')}",
                         style: TextStyle(
-                            color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
